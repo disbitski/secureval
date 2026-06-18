@@ -1,8 +1,8 @@
 # SecureVal
 
-SecureVal is a Foundry project for issuing and transferring real value across
-chains with a burn-and-mint token model between Ethereum Sepolia and Avalanche
-Fuji.
+SecureVal is a Foundry project for securing and transferring tokenized value
+across chains with an explicit burn-and-mint model between Ethereum Sepolia and
+Avalanche Fuji.
 
 The project is powered by Chainlink CCIP and the Cross-Chain Token (CCT)
 standard. It uses pinned `BurnMintERC20` token and `BurnMintTokenPool`
@@ -24,7 +24,7 @@ infrastructure, and a Cross-Chain Token (CCT) is configured to move through
 CCIP using a token pool on each supported chain.
 
 This repo is intentionally narrow and practical: it is a testnet-ready
-SecureVal template for a burn-and-mint CCT between Ethereum Sepolia and
+SecureVal workflow for a burn-and-mint CCT between Ethereum Sepolia and
 Avalanche Fuji. The scripts are split into small deployment and admin steps so
 each transaction is explicit, auditable, and easy to retry.
 
