@@ -1,11 +1,12 @@
-# Chainlink CCIP and CCT Token
+# SecureVal
 
-A Foundry project that deploys a Chainlink Cross-Chain Token (CCT) using a
-burn-and-mint model between Ethereum Sepolia and Avalanche Fuji.
+SecureVal is a Foundry project for issuing and transferring real value across
+chains with a burn-and-mint token model between Ethereum Sepolia and Avalanche
+Fuji.
 
-The project uses Chainlink's `BurnMintERC20` token and `BurnMintTokenPool`
-contracts directly from pinned Git submodules. It walks through the complete
-CCT lifecycle:
+The project is powered by Chainlink CCIP and the Cross-Chain Token (CCT)
+standard. It uses pinned `BurnMintERC20` token and `BurnMintTokenPool`
+contracts directly from Git submodules and walks through the complete lifecycle:
 
 1. Deploy a burn-and-mint ERC20 on each chain.
 2. Deploy a burn-and-mint token pool on each chain.
@@ -17,14 +18,15 @@ CCT lifecycle:
 
 ## Why This Project Exists
 
-Chainlink CCIP makes it possible to move tokens and data across chains. A
-Cross-Chain Token (CCT) is a token configured to move through CCIP using a token
-pool on each supported chain.
+SecureVal exists to make cross-chain value transfer concrete and repeatable.
+Chainlink CCIP provides the cross-chain messaging and token-transfer
+infrastructure, and a Cross-Chain Token (CCT) is configured to move through
+CCIP using a token pool on each supported chain.
 
-This repo is intentionally narrow and practical: it is a testnet-ready template
-for a burn-and-mint CCT between Ethereum Sepolia and Avalanche Fuji. The scripts
-are split into small deployment and admin steps so each transaction is explicit,
-auditable, and easy to retry.
+This repo is intentionally narrow and practical: it is a testnet-ready
+SecureVal template for a burn-and-mint CCT between Ethereum Sepolia and
+Avalanche Fuji. The scripts are split into small deployment and admin steps so
+each transaction is explicit, auditable, and easy to retry.
 
 ## Architecture
 
@@ -61,8 +63,8 @@ In the burn-and-mint model:
 
 ## What Is Included
 
-- `script/DeployToken.s.sol`: deploys Chainlink `BurnMintERC20`.
-- `script/DeployPool.s.sol`: deploys Chainlink `BurnMintTokenPool` and grants it mint/burn roles.
+- `script/DeployToken.s.sol`: deploys the pinned `BurnMintERC20`.
+- `script/DeployPool.s.sol`: deploys the pinned `BurnMintTokenPool` and grants it mint/burn roles.
 - `script/ClaimAdmin.s.sol`: registers the token admin through `RegistryModuleOwnerCustom`.
 - `script/AcceptAdmin.s.sol`: accepts the pending token admin role.
 - `script/SetPool.s.sol`: sets the token pool in the token admin registry.
@@ -118,7 +120,8 @@ This repo uses Git submodules pinned to exact commits. Do not use
 Clone with submodules:
 
 ```bash
-git clone --recurse-submodules <repo-url>
+git clone --recurse-submodules https://github.com/disbitski/secureval.git
+cd secureval
 ```
 
 Or initialize after cloning:
@@ -181,8 +184,8 @@ Fill these first:
 PRIVATE_KEY=0xYOUR_PRIVATE_KEY
 ETHEREUM_SEPOLIA_RPC_URL=https://your-sepolia-rpc
 AVALANCHE_FUJI_RPC_URL=https://your-fuji-rpc
-TOKEN_NAME="Agent CCIP CCT"
-TOKEN_SYMBOL=ACCT
+TOKEN_NAME="SecureVal Token"
+TOKEN_SYMBOL=SVAL
 TOKEN_DECIMALS=18
 TOKEN_MAX_SUPPLY=0
 TOKEN_PREMINT=0
@@ -522,7 +525,7 @@ via_ir = true
 ### Claim admin reverts
 
 Confirm the wallet running the script matches `getCCIPAdmin()` on the token.
-The deployer is the initial CCIP admin for Chainlink's `BurnMintERC20`.
+The deployer is the initial CCIP admin for the pinned `BurnMintERC20`.
 
 ### Accept admin reverts
 
